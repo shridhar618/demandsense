@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/*
+  DemandSense AI — design tokens
+  ---------------------------------
+  Direction: instrumented / signal-in-the-noise. A graphite base (not pure
+  black — Palantir/Datadog register as "serious tooling", not "marketing
+  site") with a warm amber signal accent standing in for "the decision that
+  emerges from the data," and a cool cyan as its counter-series for
+  comparison charts (actual vs. forecast, model A vs. model B).
+*/
+:root {
+  --color-canvas: #0B0E14;
+  --color-surface: #12151C;
+  --color-surface-raised: #171B24;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  --color-ink: #E8EAF0;
+  --color-ink-muted: #8B93A7;
+  --color-ink-faint: #565D70;
+
+  --color-signal: #F5A623;      /* primary accent — decisions, forecasts, CTAs */
+  --color-signal-dim: #4d3a1a;
+  --color-counter: #22D3EE;     /* secondary series — actuals, comparisons */
+  --color-counter-dim: #163a42;
+
+  --color-positive: #34D399;
+  --color-negative: #F87171;
+  --color-warning: #FBBF24;
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -8px rgba(0,0,0,0.5);
+  --radius-card: 14px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-signal);
+  color: #14151A;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-faint); }
+
+.font-display { font-family: var(--font-display); }
+.font-mono-data { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.card-surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+[data-theme='light'] {
+  --color-canvas: #F6F7F9;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFFFFF;
+  --color-border: rgba(15, 18, 25, 0.08);
+  --color-border-strong: rgba(15, 18, 25, 0.14);
+
+  --color-ink: #14161C;
+  --color-ink-muted: #5C6272;
+  --color-ink-faint: #9199AA;
+
+  --color-signal-dim: #FCEACB;
+  --color-counter-dim: #D3F4FA;
+
+  --shadow-card: 0 1px 2px rgba(20,22,28,0.04), 0 8px 24px -8px rgba(20,22,28,0.08);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}

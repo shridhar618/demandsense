@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: demandsense
+      POSTGRES_PASSWORD: demandsense
+      POSTGRES_DB: demandsense
+    ports:
+      - "5432:5432"
+    volumes:
+      - demandsense_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demandsense"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://demandsense:demandsense@postgres:5432/demandsense
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    ports:
+      - "4173:4173"
+
+volumes:
+  demandsense_pg_data:
