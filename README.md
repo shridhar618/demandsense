@@ -1,5 +1,7 @@
 # DemandSense AI — Phases 1–3: Ingestion, Forecasting, Decision & Inventory Intelligence
 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=white)
+
 *Predict. Explain. Optimize. Decide.*
 
 Three working vertical slices: getting demand history in cleanly, turning it
